@@ -5,7 +5,7 @@ class Nav extends Component {
   render() {
     return (
       <div>
-       <h3 className="appTitle">CITY DATA</h3>
+        <h3 className="appTitle">CITY DATA</h3>
       </div>
     )
   }
