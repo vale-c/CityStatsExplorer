@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import Nav from './Components/Nav';
-import CitySearch from './Components/CitySearch';
-import './App.css';
+import Nav from './Components/Nav.js';
+//import Cities from './SubComponents/Cities.js';
+import CityPage from './Components/CityPage.js';
+
+let AppStyle = {
+  textAlign: 'center'
+}
 
 class App extends Component {
+
   render() {
     return (
-      <div className="App">
-        <Nav/>
-        <CitySearch/>
+      <div className="App" style={AppStyle}>
+        <Nav />
+        <CityPage />
       </div>
     );
   }

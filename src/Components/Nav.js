@@ -1,11 +1,14 @@
-import React, {Component} from 'react';
-import './Nav.css';
+import React, { Component } from 'react';
+
+let appTitle = {
+  margin: '1em'
+}
 
 class Nav extends Component {
   render() {
     return (
       <div>
-        <h3 className="appTitle">CITY DATA</h3>
+        <h3 className="appTitle" style={appTitle}>CITY DATA</h3>
       </div>
     )
   }
