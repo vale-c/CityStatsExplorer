@@ -73,7 +73,7 @@ class CityPage extends Component {
       url: `https://api.teleport.org/api/urban_areas/slug:san-francisco-bay-area/scores/`
     }).then((response) => {
       this.setState({ scores: response.data }, () => {
-        console.log(this.state);
+        //console.log(this.state.scores.categories);
       });
     }).catch((err) => {
       console.log(err);
@@ -88,16 +88,8 @@ class CityPage extends Component {
   }
 
   render() {
-
-    // let scoreItems;
-    // if (this.props.scores) {
-    //   scoreItems = this.props.scores.map(score => {
-    //     let color = score.categories.color;
-    //     let categories = score.categories.name;
-    //     let out_of_10 = score.categories.score_out_of_10;
-    //   });   
   
-    const { summary, urban_area, lat, lon, timezone, population, teleport_score } = this.state;
+    const { city, summary, urban_area, lat, lon, timezone, population, teleport_score } = this.state;
 
     const CityData = ({ city, summary, urban_area, lat, lon, timezone, population, teleport_score }) => (
         <div>
@@ -110,12 +102,6 @@ class CityPage extends Component {
           <h3 className="timezone">Timezone: {timezone}</h3>
           <h3 className="teleport">Teleport Score: {teleport_score}</h3>
           
-        {/* <div>
-          <h3><strong> Color: </strong>{color}</h3>
-          <h3><strong> Categories: </strong>{categories}</h3>
-          <h3><strong> Score: </strong>{out_of_10}</h3>
-        </div> */}
-
         </div>
       );
   
@@ -124,7 +110,7 @@ class CityPage extends Component {
       <div className="card">
         <div className="weatherWrapper">
           <CityData
-            //city={city}
+            city={city}
             summary={summary}
             urban_area={urban_area}
             lat={lat}
@@ -133,9 +119,7 @@ class CityPage extends Component {
             timezone={timezone}
             teleport_score={teleport_score}
           />
-        </div>
-
-    
+        </div> 
       </div>
     );
   }

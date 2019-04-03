@@ -1,27 +1,23 @@
 import React, { Component } from 'react';
 import { Row, Grid, Panel, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
 
-let scoreItemsStyle = {
-  backgroundColor: 'red'
-}
-
 class Scores extends Component {
   render() {
-    let scoreItems;
-    if (this.props.scores) {
-      scoreItems = this.props.scores.map(score => {
+    let categoryItems;
+    if (this.props.categs) {
+      categoryItems = this.props.categs.map(cat => {
 
-        let color = score.categories.color;
+        let color = cat.scores.categories.color;
         //console.log(color);
-        let categories = score.categories.name;
+        let categories = cat.scores.categories.name;
         //console.log(categories);
-        let out_of_10 = score.categories.score_out_of_10;
+        let out_of_10 = cat.scores.categories.score_out_of_10;
        // console.log(out_of_10);
 
         return (
           <Panel accordion="true">
             <Panel.Heading>
-              <Panel.Title toggle>CITY QUALITY</Panel.Title>
+              <Panel.Title toggle>CITY CATEGORIES</Panel.Title>
             </Panel.Heading>
             <Panel.Body collapsible>
             <Grid>
@@ -42,8 +38,8 @@ class Scores extends Component {
     }
     
     return (
-      <div className="scoreItems" style={scoreItemsStyle}>
-        {scoreItems}
+      <div className="categoryItems">
+        {categoryItems}
       </div>
     );
   }
