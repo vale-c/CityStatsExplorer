@@ -1,30 +1,30 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-// import Cities from './SubComponents/Cities.js';
+
 
 class CityPage extends Component {
   constructor(props) {
     super(props);
   
     this.state = {
-      city: "prague",
-      newCity: "",
+      city: "amsterdam",
       geonameid: "",
       timezone: "",
       urban_area: "",
       lat: "",
       lon: "",
-      categories: [],
-      score: [],
       summary: "",
       population: "",
       teleport_score: "",
     };
-    this.getCityData = this.getCityData.bind(this);
+
+    this.loadCityData = this.loadCityData.bind(this);
+    this.loadMoreCityData = this.loadMoreCityData.bind(this);
+    this.loadScores = this.loadScores.bind(this);
   }
 
 
-  getCityData = () => {
+  loadCityData = () => {
     axios
       .get(`https://api.teleport.org/api/cities/?search=${this.state.city}`)
       .then(res => {
@@ -57,8 +57,7 @@ class CityPage extends Component {
           return response.json()
         })
         .then(res => {
-          console.log(res);
-
+          //console.log(res);
           this.setState({
             summary: res.summary,
             teleport_score: res.teleport_city_score
@@ -68,18 +67,39 @@ class CityPage extends Component {
         })
     }
 
+  loadScores() {
+    axios.request({
+      method: 'get',
+      url: `https://api.teleport.org/api/urban_areas/slug:san-francisco-bay-area/scores/`
+    }).then((response) => {
+      this.setState({ scores: response.data }, () => {
+        console.log(this.state);
+      });
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+
+
   componentWillMount() {
-    this.getCityData();
+    this.loadCityData();
     this.loadMoreCityData();
+    this.loadScores();
   }
 
   render() {
 
-    // <Cities label="States" onChange={this.props.onChange} searchable />
+    // let scoreItems;
+    // if (this.props.scores) {
+    //   scoreItems = this.props.scores.map(score => {
+    //     let color = score.categories.color;
+    //     let categories = score.categories.name;
+    //     let out_of_10 = score.categories.score_out_of_10;
+    //   });   
+  
+    const { summary, urban_area, lat, lon, timezone, population, teleport_score } = this.state;
 
-    const { city, summary, urban_area, lat, lon, timezone, population, teleport_score } = this.state;
-
-    const CityData = ({ city,summary, urban_area, lat, lon, timezone, population, teleport_score }) => (
+    const CityData = ({ city, summary, urban_area, lat, lon, timezone, population, teleport_score }) => (
         <div>
           <h3 className="city"> {city} </h3>
           <h3 className="summary"> {summary} </h3>
@@ -89,14 +109,22 @@ class CityPage extends Component {
           <h3 className="lon"> Longitude: {lon}° </h3>
           <h3 className="timezone">Timezone: {timezone}</h3>
           <h3 className="teleport">Teleport Score: {teleport_score}</h3>
+          
+        {/* <div>
+          <h3><strong> Color: </strong>{color}</h3>
+          <h3><strong> Categories: </strong>{categories}</h3>
+          <h3><strong> Score: </strong>{out_of_10}</h3>
+        </div> */}
+
         </div>
       );
+  
 
     return (
       <div className="card">
         <div className="weatherWrapper">
           <CityData
-            city={city}
+            //city={city}
             summary={summary}
             urban_area={urban_area}
             lat={lat}
@@ -107,6 +135,7 @@ class CityPage extends Component {
           />
         </div>
 
+    
       </div>
     );
   }

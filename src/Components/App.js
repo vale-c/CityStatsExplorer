@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Nav from './Components/Nav.js';
-//import Cities from './SubComponents/Cities.js';
-import CityPage from './Components/CityPage.js';
+import Nav from './Nav.js';
+import CityPage from './CityPage.js';
+import Dropdown from './Dropdown.js';
+
 
 let AppStyle = {
   textAlign: 'center'
@@ -10,10 +11,13 @@ let AppStyle = {
 class App extends Component {
 
   render() {
+
     return (
       <div className="App" style={AppStyle}>
         <Nav />
         <CityPage />
+        <Dropdown options={["Amsterdam", "London", "Paris", "Lisbon"]} />
+   
       </div>
     );
   }
