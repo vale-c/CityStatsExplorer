@@ -8,32 +8,34 @@ import { Grid, Col, Row } from "react-bootstrap";
 
 import axios from "axios";
 
-let AppStyle = {
-  textAlign: 'center'
-}
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      categs: [],
-      text: ""
+      scores: [],
+      text: '',
+      city: 'amsterdam'
     };
   }
 
+  componentWillMount() {
+    this.loadScores();
+  }
 
   loadScores() {
+    const city = this.state.city;
     axios
       .request({
         method: "get",
-        url: `https://api.teleport.org/api/urban_areas/slug:milan/scores/`
+        url: `https://api.teleport.org/api/urban_areas/slug:${city}/scores/`
       })
       .then(response => {
-        this.setState({ scores: response.data }, () => {
-          console.log(this.state.scores.categories);
+        this.setState({ scores: response.data.categories }, () => {
+          console.log(this.state);
         });
       })
-      
+
       .catch(err => {
         console.log(err);
       });
@@ -43,13 +45,10 @@ class App extends Component {
     this.setState({ text: text }, this.loadScores());
   }
 
-  componentWillMount() {
-    this.loadScores();
-  }
 
   render() {
     return (
-      <div className="App" style={AppStyle}>
+      <div className="App">
         <Header />
         <Grid>
           <Row>
@@ -59,7 +58,9 @@ class App extends Component {
                 value={this.state.text}
               />
               <CityPage />
-              <Scores categs={this.state.categs} />
+
+              <Scores scores={this.state.scores} />
+
             </Col>
           </Row>
         </Grid>
@@ -67,6 +68,6 @@ class App extends Component {
     );
   }
 }
-    
-        
+
+
 export default App;

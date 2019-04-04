@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 
-
 class CityPage extends Component {
   constructor(props) {
     super(props);
-  
+
     this.state = {
       city: "amsterdam",
       geonameid: "",
@@ -57,12 +56,9 @@ class CityPage extends Component {
           return response.json()
         })
         .then(res => {
-          //console.log(res);
           this.setState({
             summary: res.summary,
             teleport_score: res.teleport_city_score
-            // categories: res.data.categories.name,
-            // score: res.data.categories.score_out_of_10
           })
         })
     }
@@ -73,7 +69,6 @@ class CityPage extends Component {
       url: `https://api.teleport.org/api/urban_areas/slug:san-francisco-bay-area/scores/`
     }).then((response) => {
       this.setState({ scores: response.data }, () => {
-        //console.log(this.state.scores.categories);
       });
     }).catch((err) => {
       console.log(err);
@@ -88,7 +83,7 @@ class CityPage extends Component {
   }
 
   render() {
-  
+
     const { city, summary, urban_area, lat, lon, timezone, population, teleport_score } = this.state;
 
     const CityData = ({ city, summary, urban_area, lat, lon, timezone, population, teleport_score }) => (
@@ -101,10 +96,10 @@ class CityPage extends Component {
           <h3 className="lon"> Longitude: {lon}° </h3>
           <h3 className="timezone">Timezone: {timezone}</h3>
           <h3 className="teleport">Teleport Score: {teleport_score}</h3>
-          
+
         </div>
       );
-  
+
 
     return (
       <div className="card">
@@ -119,7 +114,7 @@ class CityPage extends Component {
             timezone={timezone}
             teleport_score={teleport_score}
           />
-        </div> 
+        </div>
       </div>
     );
   }
