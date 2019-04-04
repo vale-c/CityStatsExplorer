@@ -10,9 +10,8 @@ class Scores extends Component {
         let color = score.color;
 
         let categories = score.name;
-        //console.log(categories);
+
         let out_of_10 = score.score_out_of_10;
-       // console.log(out_of_10);
 
         return (
           <Panel accordion="true" key={color} eventKey={color}>
@@ -24,9 +23,9 @@ class Scores extends Component {
                 <Row>
                   <Col xs={8} md={8} lg={8}>
                     <ListGroup>
-                      <ListGroupItem style={{ color: "EEEEEE" }}><strong>Color: </strong>{color}</ListGroupItem>
-                      <ListGroupItem style={{ color: "EEEEEE" }}><strong>Categories: </strong>{categories}</ListGroupItem>
-                      <ListGroupItem style={{ color: "EEEEEE" }}><strong>Score (out of 10): </strong>{out_of_10}</ListGroupItem>
+                      <ListGroupItem style={{ color: "EEEEEE", textAlign: 'center' }}><strong>Color: </strong>{color}</ListGroupItem>
+                      <ListGroupItem style={{ color: "EEEEEE", textAlign: 'center' }}><strong>Categories: </strong>{categories}</ListGroupItem>
+                      <ListGroupItem style={{ color: "EEEEEE", textAlign: 'center' }}><strong>Score (out of 10): </strong>{out_of_10}</ListGroupItem>
                     </ListGroup>
                   </Col>
                 </Row>

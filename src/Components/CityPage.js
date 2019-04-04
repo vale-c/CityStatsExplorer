@@ -6,7 +6,7 @@ class CityPage extends Component {
     super(props);
 
     this.state = {
-      city: "amsterdam",
+      city: "bali",
       geonameid: "",
       timezone: "",
       urban_area: "",

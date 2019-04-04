@@ -15,12 +15,13 @@ class App extends Component {
     this.state = {
       scores: [],
       text: '',
-      city: 'amsterdam'
+      city: 'bali'
     };
   }
 
   componentWillMount() {
     this.loadScores();
+    this.loadImage();
   }
 
   loadScores() {
@@ -41,6 +42,25 @@ class App extends Component {
       });
   }
 
+  loadImage() {
+    const city = this.state.city;
+    fetch(`https://api.teleport.org/api/urban_areas/slug:${city}/images/`)
+    .then((response) => {
+        if (!response.ok) {
+          throw Error('Something went wrong retreiving an image :(');
+        }
+        return response.json();
+    })
+    .then((responseData) => {
+        this.setState({
+        bannerImage: responseData.photos[0].image.web
+  });
+})
+    .catch((error) => {
+        console.log(error);
+    });
+  }
+
   handleChange(text) {
     this.setState({ text: text }, this.loadScores());
   }
@@ -52,7 +72,9 @@ class App extends Component {
         <Header />
         <Grid>
           <Row>
+
             <Col xs={12} md={12} lg={12}>
+              <img src={this.state.bannerImage} style={{width: '100%', 'height': '30vh'}} alt='City Banner'/>
               <SearchInput
                 onChange={this.handleChange.bind(this)}
                 value={this.state.text}
