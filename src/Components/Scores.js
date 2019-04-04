@@ -15,17 +15,17 @@ class Scores extends Component {
 
         return (
           <Panel accordion="true" key={color} eventKey={color}>
-            <Panel.Heading>
+            <Panel.Heading style={{color: color}}>
               <Panel.Title toggle>{categories}</Panel.Title>
             </Panel.Heading>
             <Panel.Body collapsible>
             <Grid>
                 <Row>
                   <Col xs={8} md={8} lg={8}>
-                    <ListGroup>
-                      <ListGroupItem style={{ color: "EEEEEE", textAlign: 'center' }}><strong>Color: </strong>{color}</ListGroupItem>
-                      <ListGroupItem style={{ color: "EEEEEE", textAlign: 'center' }}><strong>Categories: </strong>{categories}</ListGroupItem>
-                      <ListGroupItem style={{ color: "EEEEEE", textAlign: 'center' }}><strong>Score (out of 10): </strong>{out_of_10}</ListGroupItem>
+                    <ListGroup style={{color: color, fontWeight: 'bold !important', textAlign: 'center' }}>
+                      {/* <ListGroupItem style={{ textAlign: 'center' }}><strong>Color: </strong>{color}</ListGroupItem>
+                      <ListGroupItem style={{ textAlign: 'center' }}><strong>Category Name: </strong>{categories}</ListGroupItem> */}
+                      <ListGroupItem style={{ fontWeight: 'bold !important' }}><strong>Score (out of 10): </strong>{out_of_10}</ListGroupItem>
                     </ListGroup>
                   </Col>
                 </Row>
