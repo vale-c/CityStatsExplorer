@@ -21,9 +21,16 @@ let parStyle = {
   fontFamily: 'Helvetica',
 }
 
+let searchContainerStyle = {
+  textAlign: "center",
+  display: "inline-block",
+  margin: '1em',
+  width: '100%'
+};
+
 const CityForm = (props) => {
   return (
-    <form className="searchContainer" onSubmit={props.loadCityData}>
+    <form className="searchContainer" style={searchContainerStyle} onSubmit={props.loadCityData}>
       <p className="lead" style={parStyle}>Enter a city to get all of its info!</p>
       <input type="text" className="form-control" name="city" placeholder="Search for a city..." />
       <button style={btnStyle}>Submit</button>
