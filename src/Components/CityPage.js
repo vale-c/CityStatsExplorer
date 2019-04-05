@@ -6,7 +6,6 @@ class CityPage extends Component {
     super(props);
 
     this.state = {
-      city: "bali",
       geonameid: "",
       timezone: "",
       urban_area: "",
@@ -17,13 +16,11 @@ class CityPage extends Component {
       teleport_score: "",
     };
 
-    this.loadCityData = this.loadCityData.bind(this);
+    this.laodCityInfo = this.laodCityInfo.bind(this);
     this.loadMoreCityData = this.loadMoreCityData.bind(this);
-    this.loadScores = this.loadScores.bind(this);
   }
 
-
-  loadCityData = () => {
+  laodCityInfo = () => {
     axios
       .get(`https://api.teleport.org/api/cities/?search=${this.state.city}`)
       .then(res => {
@@ -48,7 +45,6 @@ class CityPage extends Component {
       });
   };
 
-
   loadMoreCityData() {
     const cityresp = this.state.city;
       fetch(`https://api.teleport.org/api/urban_areas/slug:${cityresp}/scores/`)
@@ -61,25 +57,11 @@ class CityPage extends Component {
             teleport_score: res.teleport_city_score
           })
         })
-    }
-
-  loadScores() {
-    axios.request({
-      method: 'get',
-      url: `https://api.teleport.org/api/urban_areas/slug:san-francisco-bay-area/scores/`
-    }).then((response) => {
-      this.setState({ scores: response.data }, () => {
-      });
-    }).catch((err) => {
-      console.log(err);
-    });
-  }
-
+    
 
   componentWillMount() {
-    this.loadCityData();
+    this.laodCityInfo();
     this.loadMoreCityData();
-    this.loadScores();
   }
 
   render() {
