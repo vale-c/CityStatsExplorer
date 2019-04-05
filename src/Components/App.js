@@ -14,7 +14,7 @@ class App extends Component {
       scores: [],
       text: "",
       activeKey: "1",
-      city: '',
+      city: 'zurich',
       bannerImage: []
     };
     this.handleSelect = this.handleSelect.bind(this);
@@ -28,6 +28,7 @@ class App extends Component {
     e.preventDefault();
     const city = e.target.elements.city.value;
     if (city) {
+      //GET THE CATEGORIES AND THEIR RELATIVE SCORES
       axios
         .request({
           method: "get",
@@ -40,7 +41,7 @@ class App extends Component {
         .catch(err => {
           console.log(err);
         });
-
+      //LOAD THE CORRESPONDING CITY IMAGE
       fetch(`https://api.teleport.org/api/urban_areas/slug:${city}/images/`)
         .then(res => {
           if (!res.ok) {
