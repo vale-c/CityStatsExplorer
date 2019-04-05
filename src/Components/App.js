@@ -14,7 +14,7 @@ class App extends Component {
       scores: [],
       text: "",
       activeKey: "1",
-      city: 'zurich',
+      city: '',
       bannerImage: []
     };
     this.handleSelect = this.handleSelect.bind(this);
@@ -69,14 +69,17 @@ class App extends Component {
         <Grid>
           <Row>
             <Col xs={12} md={12} lg={12}>
-              <CityForm
-                loadCityData={this.loadCityData}
-              />
-              <br/>
-              <img src={ this.state.bannerImage
-                ? this.state.bannerImage
-                : "https://via.placeholder.com/500x200.png/7befb2/?text=Look+For+A+Cool+City!"}
-                style={{ width: "100%", height: "40%", marginBottom: '2em' }}
+              <CityForm loadCityData={this.loadCityData} />
+              <br />
+              <img
+                src={this.state.bannerImage}
+                onError={(e) => {
+                  e.target.onerror = null; e.target.src ="https://via.placeholder.com/500x200.png/7befb2/?text=Look+For+A+Cool+City!"}}
+                style={{
+                  width: "100%",
+                  height: "20%",
+                  marginBottom: "2em"
+                }}
                 alt="City Banner"
               />
               <br />

@@ -22,8 +22,8 @@ class Scores extends Component {
             <Grid>
                 <Row>
                   <Col xs={8} md={8} lg={8}>
-                    <ListGroup style={{color: color, fontWeight: 'bold !important', textAlign: 'center !important' }}>
-                      <ListGroupItem style={{ fontWeight: 'bold !important' }}><strong>Score (out of 10): </strong>{out_of_10}</ListGroupItem>
+                    <ListGroup style={{color: color, fontWeight: 'bold', textAlign: 'center' }}>
+                      <ListGroupItem style={{ fontWeight: 'bold' }}><strong>Score (out of 10): </strong>{out_of_10}</ListGroupItem>
                     </ListGroup>
                   </Col>
                 </Row>
