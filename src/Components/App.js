@@ -74,13 +74,13 @@ class App extends Component {
               <img
                 src={this.state.bannerImage}
                 onError={(e) => {
-                  e.target.onerror = null; e.target.src="https://media.giphy.com/media/10HacXwBbnkUec/giphy.gif"}}
+                  e.target.onerror = null; e.target.src="https://media.giphy.com/media/GWTzcRZ5kLSGk/giphy.gif"}}
                 //Placeholder Alternative 2
                 // https://via.placeholder.com/500x200.png/7befb2/?text=Look+For+A+Cool+City!
                 style={{
-                  width: "100%",
-                  height: "20%",
-                  margin: "2em"
+                  width: '100%',
+                  height: '30%',
+                  marginTop: '1em',
                 }}
                 alt="City Banner"
               />
