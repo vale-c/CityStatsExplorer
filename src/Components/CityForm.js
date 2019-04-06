@@ -2,51 +2,50 @@
 import React from 'react';
 import '../App.css';
 
+let divStyle ={
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+}
+
+let inputStyle = {
+  borderRadius: '7px',
+  padding: '1em',
+  fontFamily: 'Roboto Condensed',
+  fontSize: '1em'
+}
+
 let btnStyle = {
   backgroundColor: "#ea4444" /* Green */,
   border: "none",
   borderRadius: "5px",
   color: "white",
   marginTop: "1em",
-  padding: "10px 25px",
+  marginLeft: '0.5em',
+  padding: "0.4em 0.7em",
   textAlign: "center",
   textDecoration: "none",
   display: "inline-block",
-  fontSize: "1.5rem",
-  fontWeight: "700",
+  fontSize: "2rem",
+  fontWeight: "400",
   letterSpacing: "0.1rem",
-  fontFamily: "Helvetica"
-};
-
-let parStyle = {
-  fontSize: '22px',
-  textAlign: 'center',
-  textDecoration: 'none',
-  fontFamily: 'Helvetica',
-  fontWeight: '400'
-}
-
-let searchContainerStyle = {
-  textAlign: "center",
-  display: "inline-block",
-  margin: '1em',
-  width: '100%'
-};
-
-let inputStyle = {
-  borderRadius: '5px',
-  fontFamily: 'Helvetica',
-  fontWeight: '300',
-  fontSIze: '14px'
+  fontFamily: "VT323"
 }
 
 const CityForm = (props) => {
   return (
-    <form className="searchContainer" style={searchContainerStyle} onSubmit={props.loadCityData}>
-      <p className="lead" style={parStyle}>Enter a city to get all of its info!</p>
-      <input type="text" style={inputStyle} className="form-control" name="city" placeholder="Search for a city..." />
+ <div className="wrapper" style={divStyle}>
+   <nav className="navbar">
+    <form className="form-inline" onSubmit={props.loadCityData}>
+      <input  type="search"
+              className="form-control"
+              style={inputStyle}
+              name="city"
+              placeholder="Search for a city..." />       
       <button style={btnStyle}>Submit</button>
     </form>
+   </nav>
+  </div>
   );
 }
 

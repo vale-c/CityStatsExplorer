@@ -20,7 +20,7 @@ class App extends Component {
     this.handleSelect = this.handleSelect.bind(this);
 }
 
-  handleSelect(activeKey) {
+  handleSelect(activeKey) {        //IT HANDLES THE ACCORDION PANEL ACTIVE ELEMENT
     this.setState({ activeKey });
   }
 
@@ -28,7 +28,7 @@ class App extends Component {
     e.preventDefault();
     const city = e.target.elements.city.value;
     if (city) {
-      //GET THE CATEGORIES AND THEIR RELATIVE SCORES
+      //GET THE CATEGORIES WITH THEIR RELATIVE SCORES
       axios
         .request({
           method: "get",
