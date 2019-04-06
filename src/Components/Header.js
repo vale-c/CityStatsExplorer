@@ -13,7 +13,7 @@ class Header extends Component {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand style={headerStyle}>
-              City Stats
+              City Stats Explorer
             </Navbar.Brand>
         </Navbar.Header>
       </Navbar>

@@ -16,11 +16,10 @@ let inputStyle = {
 }
 
 let btnStyle = {
-  backgroundColor: "#ea4444" /* Green */,
+ // backgroundColor: "#ea4444" /* Light Red */,
   border: "none",
   borderRadius: "5px",
   color: "white",
-  marginTop: "1em",
   marginLeft: '0.5em',
   padding: "0.4em 0.7em",
   textAlign: "center",
@@ -34,18 +33,18 @@ let btnStyle = {
 
 const CityForm = (props) => {
   return (
- <div className="wrapper" style={divStyle}>
-   <nav className="navbar">
-    <form className="form-inline" onSubmit={props.loadCityData}>
-      <input  type="search"
-              className="form-control"
-              style={inputStyle}
-              name="city"
-              placeholder="Search for a city..." />       
-      <button style={btnStyle}>Submit</button>
-    </form>
-   </nav>
-  </div>
+        <div className="wrapper" style={divStyle}>
+            <nav className="navbar">
+              <form   className="form-inline" onSubmit={props.loadCityData}>
+              <input  type="search"
+                      className="form-control"
+                      style={inputStyle}
+                      name="city"
+                      placeholder="Search for a city..." />       
+                  <button class="btn btn-primary btn-lg" style={btnStyle}>Submit</button>
+              </form>
+            </nav>
+        </div>
   );
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Grid, Panel, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
 
+
 class Scores extends Component {
   render() {
     let scoreItems;
