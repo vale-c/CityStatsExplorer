@@ -3,6 +3,7 @@ import Header from './Header.js';
 import Scores from './Scores.js';
 import CityForm from './CityForm';
 import { Grid, Col, Row } from "react-bootstrap";
+import Footer from "./Footer.js";
 
 import axios from "axios";
 
@@ -86,6 +87,7 @@ class App extends Component {
               />
               <br />
               <Scores scores={this.state.scores} />
+              <Footer />
             </Col>
           </Row>
         </Grid>
