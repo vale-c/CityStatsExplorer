@@ -12,3 +12,10 @@ html, body
 footer.blockquote-footer::before {
     content: none;
 }
+
+.panel-title, li.list-group-item {
+    font-weight: 700;
+    font-family: 'Roboto Condensed';
+    font-size: 1.3em;
+    padding: 0 auto;
+}

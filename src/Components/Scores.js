@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Row, Grid, Panel, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
 
+let listGroupItemStyle= {
+  border: 'none',
+}
 
 class Scores extends Component {
   render() {
@@ -23,8 +26,8 @@ class Scores extends Component {
             <Grid>
                 <Row>
                   <Col xs={8} md={8} lg={8}>
-                    <ListGroup style={{color: color, fontWeight: 'bold', textAlign: 'center' }}>
-                      <ListGroupItem style={{ fontWeight: 'bold' }}><strong>Score (out of 10): </strong>{out_of_10}</ListGroupItem>
+                    <ListGroup style={{  color: color  }}>
+                      <ListGroupItem style={listGroupItemStyle}><strong>Score (out of 10): </strong>{out_of_10}</ListGroupItem>
                     </ListGroup>
                   </Col>
                 </Row>
