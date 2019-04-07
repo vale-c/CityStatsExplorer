@@ -1,4 +1,5 @@
+### CITY STATS EXPLORER
 
-#### STILL WIP !!!
+## A React.js Web App to access important statistics & data regarding all the major cities in the world!
 
-#### REACT APP TO FETCH AND COMPARE CITY DATA
+![alt text](https://raw.githubusercontent.com/vale-c/citystatsexplorer/screenshot.png
