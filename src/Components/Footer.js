@@ -2,10 +2,7 @@ import React from 'react';
 import react_logo from "../react-logo.svg";
 import '../App.css';
 
-let reactLogoStyle = {
-  height: '25px',
-  width: '25px'
-}
+
 let aStyle = {
   marginTop: '1em',
   padding: '0.5em',
@@ -22,7 +19,8 @@ class FooterComponent extends React.Component {
       <blockquote className="blockquote text-center" style={bqStyle}>
       <footer className="blockquote-footer">
         <div className='footer-description1'><span className='footer-name-text'>Valentina Calabrese | </span>© <span className='footer-name-text'> 2019 .</span></div>
-        <div className='footer-description2'>Built with <a href="https://facebook.github.io/react/" target="_blank" rel="noopener noreferrer" className="footer-link-description">React</a> <img src={react_logo} style={reactLogoStyle} className='footer-logo' alt='React Logo' /></div>
+        <div className='footer-description2'>Built with <a href="https://facebook.github.io/react/" target="_blank" rel="noopener noreferrer" className="footer-link-description">React</a> 
+        <img src={react_logo} className='footer-logo' alt='React Logo' /></div>
         <div className='footer-social-media'>
           <a href="http://valentinacalabrese.com" style={aStyle} target="_blank" rel="noopener noreferrer" className="social_links">
               <i id="social-link" className="far fa-window-maximize fa-2x social" aria-hidden="true"></i>
