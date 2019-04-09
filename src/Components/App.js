@@ -4,7 +4,7 @@ import Scores from './Scores.js';
 import CityForm from './CityForm';
 import { Grid, Col, Row } from "react-bootstrap";
 import Footer from "./Footer.js";
-
+import Parser from 'html-react-parser';
 import axios from "axios";
 
 
@@ -16,7 +16,8 @@ class App extends Component {
       text: "",
       activeKey: "1",
       city: '',
-      bannerImage: []
+      bannerImage: [],
+      summary: "",
     };
     this.handleSelect = this.handleSelect.bind(this);
 }
@@ -35,9 +36,12 @@ class App extends Component {
           method: "get",
           url: `https://api.teleport.org/api/urban_areas/slug:${city}/scores/`
         })
-        .then(response => {
-          this.setState({ scores: response.data.categories }, () => { });
-          console.log(response);
+        .then(res => {
+          this.setState({ 
+            scores: res.data.categories,
+            summary: res.data.summary,
+          }, () => { });
+          //console.log(response);
         })
         .catch(err => {
           console.log(err);
@@ -86,6 +90,7 @@ class App extends Component {
                 alt="City Banner"
               />
               <br />
+              <div className="summary">{ Parser(this.state.summary) }</div>
               <Scores scores={this.state.scores} />
               <Footer />
             </Col>

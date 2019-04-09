@@ -5,11 +5,12 @@ import '../App.css';
 let divStyle ={
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center'
+  alignItems: 'center',
+  marginBottom: '-2.5em'
 }
 
 let inputStyle = {
-  borderRadius: '7px',
+  borderRadius: '5px',
   padding: '1em',
   fontFamily: 'Roboto Condensed',
   fontSize: '1em'
@@ -41,7 +42,7 @@ const CityForm = (props) => {
                       style={inputStyle}
                       name="city"
                       placeholder="Search for a city..." />       
-                  <button class="btn btn-primary btn-lg" style={btnStyle}>Submit</button>
+                  <button className="btn btn-primary btn-lg" style={btnStyle}>Submit</button>
               </form>
             </nav>
         </div>

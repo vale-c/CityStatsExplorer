@@ -9,7 +9,8 @@ class Scores extends Component {
   render() {
     let scoreItems;
     if (this.props.scores) {
-      scoreItems = this.props.scores.map(score => {
+        
+        scoreItems = this.props.scores.map(score => {
 
         let color = score.color;
 
@@ -36,6 +37,7 @@ class Scores extends Component {
           </Panel>
           )
       });
+      
     }
 
     return (
