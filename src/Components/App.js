@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Header from './Header.js';
 import Scores from './Scores.js';
 import CityForm from './CityForm';
-import { Grid, Col, Row } from "react-bootstrap";
 import Footer from "./Footer.js";
+
+import { Grid, Col, Row } from "react-bootstrap";
 import Parser from 'html-react-parser';
 import axios from "axios";
 
