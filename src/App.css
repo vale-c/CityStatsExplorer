@@ -46,5 +46,13 @@ li.list-group-item {
   font-family: 'Roboto Condensed';
   font-weight: 400;
   font-size: 1.3em;
-  padding: 2em;
+  padding: 1em;
+}
+
+.teleport_score {
+  text-align: center;
+  font-family: 'Roboto Condensed';
+  font-weight: 400;
+  font-size: 1.3em;
+  padding-bottom: 1.5em; 
 }

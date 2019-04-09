@@ -18,6 +18,9 @@ class App extends Component {
       city: '',
       bannerImage: [],
       summary: "",
+      lat: "",
+      lon: "",
+      teleport_score: "",
     };
     this.handleSelect = this.handleSelect.bind(this);
 }
@@ -40,8 +43,11 @@ class App extends Component {
           this.setState({ 
             scores: res.data.categories,
             summary: res.data.summary,
+            teleport_score: res.data.teleport_city_score
+        /*    lat: res.data.location.latlon.latitude,
+            lon: res.data.location.latlon.longitude, */
           }, () => { });
-          //console.log(response);
+          console.log(res);
         })
         .catch(err => {
           console.log(err);
@@ -68,6 +74,12 @@ class App extends Component {
   };
 
   render() {
+    
+    const bannerImage = this.state.bannerImage;
+    const summary = this.state.summary;
+    const teleport_score = this.state.teleport_score;
+    const scores = this.state.scores;
+
     return (
       <div className="App">
         <Header />
@@ -77,7 +89,7 @@ class App extends Component {
               <CityForm loadCityData={this.loadCityData} />
               <br />
               <img
-                src={this.state.bannerImage}
+                src={bannerImage}
                 onError={(e) => {
                   e.target.onerror = null; e.target.src="https://media.giphy.com/media/GWTzcRZ5kLSGk/giphy.gif"}}
                 //Placeholder Alternative 2
@@ -90,8 +102,15 @@ class App extends Component {
                 alt="City Banner"
               />
               <br />
-              <div className="summary">{ Parser(this.state.summary) }</div>
-              <Scores scores={this.state.scores} />
+
+              <div className="summary">{ Parser(summary) }</div>
+              
+              {  teleport_score  ? 
+                <div className="teleport_score"><strong>Teleport Score</strong> is: {teleport_score}</div> 
+                : null 
+              }
+          
+              <Scores scores={scores} />
               <Footer />
             </Col>
           </Row>
