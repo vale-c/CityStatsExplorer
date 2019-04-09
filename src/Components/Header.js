@@ -12,7 +12,7 @@ class Header extends Component {
     return (
       <Navbar>
         <Navbar.Header>
-          <Navbar.Brand style={headerStyle}>
+          <Navbar.Brand style={headerStyle} className="animated rubberBand slow delay-3s">
               City Stats Explorer
             </Navbar.Brand>
         </Navbar.Header>

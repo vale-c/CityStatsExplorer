@@ -106,7 +106,7 @@ class App extends Component {
               <div className="summary">{ Parser(summary) }</div>
               
               {  teleport_score  ? 
-                <div className="teleport_score"><strong>Teleport Score</strong> is: {teleport_score}</div> 
+                <div className="teleport_score"> <p className="title_format">Teleport Score</p>: {teleport_score}</div> 
                 : null 
               }
           

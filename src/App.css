@@ -22,6 +22,10 @@ li.list-group-item {
 }
 
 
+.footer-name-text, .footer-description1, .footer-description2 {
+  font-family: 'Roboto Condensed';
+}
+
 .footer-logo {
   animation: footer-logo-spin infinite 20s linear;
   height: 40vmin;
@@ -41,6 +45,14 @@ li.list-group-item {
   }
 }
 
+.teleport-logo {
+  height: 40vmin;
+  padding: 0.5em;
+  pointer-events: none;
+  height: 3.5em;
+  width: 3.5em;
+}
+
 .summary {
   text-align: center;
   font-family: 'Roboto Condensed';
@@ -53,6 +65,14 @@ li.list-group-item {
   text-align: center;
   font-family: 'Roboto Condensed';
   font-weight: 400;
-  font-size: 1.3em;
-  padding-bottom: 1.5em; 
+  font-size: 1.4em;
+  padding-bottom: 1em;
+}
+
+.title_format {
+  font-family: 'Roboto Condensed';
+  display: inline;
+  font-weight: 800 !important;
+  color: black;
+  font-size: 1em;
 }
