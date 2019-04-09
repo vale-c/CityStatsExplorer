@@ -18,9 +18,13 @@ class App extends Component {
       city: '',
       bannerImage: [],
       summary: "",
-      lat: "",
-      lon: "",
+      latitude: "",
+      longitude: "",
+      population: "",
       teleport_score: "",
+      geonameid: "",
+      timezone: "",
+      urban_area: ""
     };
     this.handleSelect = this.handleSelect.bind(this);
 }
@@ -44,10 +48,8 @@ class App extends Component {
             scores: res.data.categories,
             summary: res.data.summary,
             teleport_score: res.data.teleport_city_score
-        /*    lat: res.data.location.latlon.latitude,
-            lon: res.data.location.latlon.longitude, */
           }, () => { });
-          console.log(res);
+          //console.log(res);
         })
         .catch(err => {
           console.log(err);
@@ -69,6 +71,36 @@ class App extends Component {
         .catch(error => {
           console.log(error);
         });
+      //Get Other City Info
+      axios 
+        .request({
+          method: "get", 
+          url: `https://api.teleport.org/api/cities/?search=${city}` 
+        })
+        .then(res => {
+          console.log(res);
+          this.setState({
+            geonameid: res.data._embedded["city:search-results"][0]._links["city:item"].href
+          });
+          const geoname_resp = this.state.geonameid;
+
+        axios
+          .get(geoname_resp)
+          .then(res => {
+            this.setState({
+              timezone: res.data._links["city:timezone"].name,
+              urban_area: res.data._links["city:urban_area"].name,
+              lat: res.data.location.latlon.latitude,
+              lon: res.data.location.latlon.longitude,
+              population: res.data.population
+            });
+            console.log(this.state);
+          });
+        })
+      .catch(error => {
+        console.log(error);
+      });
+
     }
     else return;
   };
@@ -79,6 +111,11 @@ class App extends Component {
     const summary = this.state.summary;
     const teleport_score = this.state.teleport_score;
     const scores = this.state.scores;
+    const latitude = this.state.latitude;
+    const longitude = this.state.longitude;
+    const population = this.state.population;
+    const timezone = this.state.timezone;
+    const urban_area = this.state.urban_area;
 
     return (
       <div className="App">
@@ -105,9 +142,34 @@ class App extends Component {
 
               <div className="summary">{ Parser(summary) }</div>
               
-              {  teleport_score  ? 
-                <div className="teleport_score"> <p className="title_format">Teleport Score</p>: {teleport_score}</div> 
+              { teleport_score  ? 
+                <div className="teleport_score"> <p className="title_format">Teleport Score: </p>{teleport_score}</div> 
                 : null 
+              }
+
+              { latitude ?
+                <div className="latitude"> <p className="title_format">Latitude: </p>{latitude}</div>
+                : null
+              }
+
+              { longitude ?
+                <div className="longitude"> <p className="title_format">Longitude: </p>{longitude}</div>
+                : null
+              }
+
+              { population ?
+                <div className="population"> <p className="title_format">Population: </p>{population}</div>
+                : null
+              }
+
+              {timezone ?
+                <div className="timezone"> <p className="title_format">Timezone: </p>{timezone}</div>
+                : null
+              }
+
+              {urban_area ?
+                <div className="urban_area"> <p className="title_format">Urban Area: </p>{urban_area}</div>
+                : null
               }
           
               <Scores scores={scores} />
