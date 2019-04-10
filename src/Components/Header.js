@@ -11,8 +11,8 @@ class Header extends Component {
   render() {
     return (
       <Navbar>
-        <Navbar.Header>
-          <Navbar.Brand style={headerStyle} className="animated rubberBand slow delay-3s">
+        <Navbar.Header>  
+          <Navbar.Brand style={headerStyle} href="https://citydata.netlify.com" target="_blank" className="animated rubberBand slow delay-3s">
               City Stats Explorer
             </Navbar.Brand>
         </Navbar.Header>

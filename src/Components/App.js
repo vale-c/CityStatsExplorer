@@ -84,7 +84,7 @@ class App extends Component {
             geonameid: res.data._embedded["city:search-results"][0]._links["city:item"].href
           });
           const geoname_resp = this.state.geonameid;
-
+          //the geoname link allows us to then fetch the data we want from the right url!!!
         axios
           .get(geoname_resp)
           .then(res => {

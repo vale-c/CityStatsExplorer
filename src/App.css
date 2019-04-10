@@ -22,7 +22,9 @@ li.list-group-item {
 }
 
 
-.footer-name-text, .footer-description1, .footer-description2 {
+.footer-name-text,
+.footer-description1,
+.footer-description2 {
   font-family: 'Roboto Condensed';
 }
 
@@ -61,7 +63,12 @@ li.list-group-item {
   padding: 1em;
 }
 
-.teleport_score, .latitude, .longitude, .urban_area, .population, .timezone {
+.teleport_score,
+.latitude,
+.longitude,
+.urban_area,
+.population,
+.timezone {
   text-align: center;
   font-family: 'Roboto Condensed';
   font-weight: 400;
@@ -75,4 +82,22 @@ li.list-group-item {
   font-weight: 800 !important;
   color: black;
   font-size: 1em;
+}
+
+
+/* MEDIA QUERIES FOR FORM
+On screens that are 768px or less*/
+@media screen and (max-width: 768px) {
+
+  div.form-group {
+    margin: 0px auto;
+  }
+
+  div.form-group .form-control {
+    display: inline-block;
+    width: 60%;
+    float: left;
+    margin: 0px 4%;
+  }
+
 }
