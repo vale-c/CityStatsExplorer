@@ -11,7 +11,7 @@ import axios from "axios";
 
 class App extends Component {
   constructor() {
-    super();   
+    super();
     this.state = {
       scores: [],
       text: "",
@@ -36,7 +36,8 @@ class App extends Component {
 
   loadCityData = e => {
     e.preventDefault();
-    const city = e.target.elements.city.value;
+    let city = e.target.elements.city.value.replace(/\s+/g, '-').toLowerCase();
+
     if (city) {
       //GET THE CATEGORIES WITH THEIR RELATIVE SCORES
       axios
@@ -45,7 +46,7 @@ class App extends Component {
           url: `https://api.teleport.org/api/urban_areas/slug:${city}/scores/`
         })
         .then(res => {
-          this.setState({ 
+          this.setState({
             scores: res.data.categories,
             summary: res.data.summary,
             teleport_score: res.data.teleport_city_score
@@ -73,13 +74,13 @@ class App extends Component {
           console.log(error);
         });
       //Get Other City Info
-      axios 
+      axios
         .request({
-          method: "get", 
-          url: `https://api.teleport.org/api/cities/?search=${city}` 
+          method: "get",
+          url: `https://api.teleport.org/api/cities/?search=${city}`
         })
         .then(res => {
-          console.log(res);
+          //console.log(res);
           this.setState({
             geonameid: res.data._embedded["city:search-results"][0]._links["city:item"].href
           });
@@ -95,7 +96,7 @@ class App extends Component {
               lon: res.data.location.latlon.longitude,
               population: res.data.population
             });
-            console.log(this.state);
+            console.log(res);
           });
         })
       .catch(error => {
@@ -107,7 +108,7 @@ class App extends Component {
   };
 
   render() {
-    
+
     const bannerImage = this.state.bannerImage;
     const summary = this.state.summary;
     const teleport_score = this.state.teleport_score;
@@ -142,10 +143,10 @@ class App extends Component {
               <br />
 
               <div className="summary">{ Parser(summary) }</div>
-              
-              { teleport_score  ? 
-                <div className="teleport_score"> <p className="title_format">Teleport Score: </p>{teleport_score}</div> 
-                : null 
+
+              { teleport_score  ?
+                <div className="teleport_score"> <p className="title_format">Teleport Score: </p>{teleport_score}</div>
+                : null
               }
 
               { latitude ?
@@ -172,7 +173,7 @@ class App extends Component {
                 <div className="urban_area"> <p className="title_format">Urban Area: </p>{urban_area}</div>
                 : null
               }
-          
+
               <Scores scores={scores} />
               <Footer />
             </Col>
