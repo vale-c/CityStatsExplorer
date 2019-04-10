@@ -9,7 +9,7 @@ class Scores extends Component {
   render() {
     let scoreItems;
     if (this.props.scores) {
-        
+
         scoreItems = this.props.scores.map(score => {
 
         let color = score.color;
@@ -28,7 +28,7 @@ class Scores extends Component {
                 <Row>
                   <Col xs={8} md={8} lg={8}>
                     <ListGroup style={{  color: color  }}>
-                      <ListGroupItem style={listGroupItemStyle}><strong>Score (out of 10): </strong>{out_of_10}</ListGroupItem>
+                      <ListGroupItem style={listGroupItemStyle}><span className="font-weight-bold">Score (out of 10): </span>{out_of_10}</ListGroupItem>
                     </ListGroup>
                   </Col>
                 </Row>
@@ -37,7 +37,7 @@ class Scores extends Component {
           </Panel>
           )
       });
-      
+
     }
 
     return (

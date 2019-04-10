@@ -20,15 +20,18 @@ class FooterComponent extends React.Component {
       <blockquote className="blockquote text-center" style={bqStyle}>
       <footer className="blockquote-footer">
         <div className='footer-description1'><span className='footer-name-text'>Valentina Calabrese | </span>© <span className='footer-name-text'> 2019 .</span></div>
-        <div  className='footer-description2'>Built with 
-            <a  href="https://facebook.github.io/react/" 
+        <div  className='footer-description2'>Built with
+            <a  href="https://facebook.github.io/react/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="footer-link-description"> React</a> 
+                className="footer-link-description"> React</a>
         <img src={react_logo} className='footer-logo' alt='React Logo' />
                 and
         <img src={teleport_logo} className='teleport-logo animated infinite pulse delay-2s' alt='Teleport Logo' />
-        's API
+        <a  href="https://developers.teleport.org/api/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-link-description">'s API </a>
         </div>
         <div className='footer-social-media'>
           <a href="http://valentinacalabrese.com" style={aStyle} target="_blank" rel="noopener noreferrer" className="social_links">
