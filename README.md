@@ -8,7 +8,3 @@
 - [x] Modularized Architecture Using Components
 
 ![alt text](screen2.png?raw=true "Latest Changes")
-
-### Old UI
-
-![alt text](screen.png?raw=true "City Stats Explorer UI")
