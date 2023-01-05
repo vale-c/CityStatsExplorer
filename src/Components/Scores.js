@@ -25,7 +25,7 @@ class Scores extends Component {
 
         return (
           <Panel accordion="true" key={color} eventKey={color}>
-            <Panel.Heading style={{ color: "black" }}>
+            <Panel.Heading style={{ color: "#364652" }}>
               <Panel.Title toggle>{categories}</Panel.Title>
             </Panel.Heading>
             <Panel.Body collapsible>
