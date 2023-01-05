@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
-import Header from './Header.js';
-import Scores from './Scores.js';
-import CityForm from './CityForm';
+import React, { Component } from "react";
+import Header from "./Header.js";
+import Scores from "./Scores.js";
+import CityForm from "./CityForm";
 import Footer from "./Footer.js";
 
 import { Grid, Col, Row } from "react-bootstrap";
-import Parser from 'html-react-parser';
+import Parser from "html-react-parser";
 import axios from "axios";
-
 
 class App extends Component {
   constructor() {
@@ -16,7 +15,7 @@ class App extends Component {
       scores: [],
       text: "",
       activeKey: "1",
-      city: '',
+      city: "",
       bannerImage: [],
       summary: "",
       latitude: "",
@@ -25,90 +24,91 @@ class App extends Component {
       teleport_score: "",
       geonameid: "",
       timezone: "",
-      urban_area: ""
+      urban_area: "",
     };
     this.handleSelect = this.handleSelect.bind(this);
-}
+  }
 
-  handleSelect(activeKey) {        //IT HANDLES THE ACCORDION PANEL ACTIVE ELEMENT
+  handleSelect(activeKey) {
+    //IT HANDLES THE ACCORDION PANEL ACTIVE ELEMENT
     this.setState({ activeKey });
   }
 
-  loadCityData = e => {
+  loadCityData = (e) => {
     e.preventDefault();
-    let city = e.target.elements.city.value.replace(/\s+/g, '-').toLowerCase();
+    let city = e.target.elements.city.value.replace(/\s+/g, "-").toLowerCase();
 
     if (city) {
       //GET THE CATEGORIES WITH THEIR RELATIVE SCORES
       axios
         .request({
           method: "get",
-          url: `https://api.teleport.org/api/urban_areas/slug:${city}/scores/`
+          url: `https://api.teleport.org/api/urban_areas/slug:${city}/scores/`,
         })
-        .then(res => {
-          this.setState({
-            scores: res.data.categories,
-            summary: res.data.summary,
-            teleport_score: res.data.teleport_city_score
-          }, () => { });
+        .then((res) => {
+          this.setState(
+            {
+              scores: res.data.categories,
+              summary: res.data.summary,
+              teleport_score: res.data.teleport_city_score,
+            },
+            () => {}
+          );
           //console.log(res);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
       //LOAD THE CORRESPONDING CITY IMAGE
       fetch(`https://api.teleport.org/api/urban_areas/slug:${city}/images/`)
-        .then(res => {
+        .then((res) => {
           if (!res.ok) {
             throw Error("Something went wrong retreiving an image :(");
           }
           return res.json();
         })
-        .then(responseData => {
+        .then((responseData) => {
           this.setState({
-            bannerImage: responseData.photos[0].image.web
+            bannerImage: responseData.photos[0].image.web,
           });
           //console.log(responseData);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
       //Get Other City Info
       axios
         .request({
           method: "get",
-          url: `https://api.teleport.org/api/cities/?search=${city}`
+          url: `https://api.teleport.org/api/cities/?search=${city}`,
         })
-        .then(res => {
+        .then((res) => {
           //console.log(res);
           this.setState({
-            geonameid: res.data._embedded["city:search-results"][0]._links["city:item"].href
+            geonameid:
+              res.data._embedded["city:search-results"][0]._links["city:item"]
+                .href,
           });
           const geoname_resp = this.state.geonameid;
           //the geoname link allows us to then fetch the data we want from the right url!!!
-        axios
-          .get(geoname_resp)
-          .then(res => {
+          axios.get(geoname_resp).then((res) => {
             this.setState({
               timezone: res.data._links["city:timezone"].name,
               urban_area: res.data._links["city:urban_area"].name,
               lat: res.data.location.latlon.latitude,
               lon: res.data.location.latlon.longitude,
-              population: res.data.population
+              population: res.data.population,
             });
             console.log(res);
           });
         })
-      .catch(error => {
-        console.log(error);
-      });
-
-    }
-    else return;
+        .catch((error) => {
+          console.log(error);
+        });
+    } else return;
   };
 
   render() {
-
     const bannerImage = this.state.bannerImage;
     const summary = this.state.summary;
     const teleport_score = this.state.teleport_score;
@@ -130,49 +130,68 @@ class App extends Component {
               <img
                 src={bannerImage}
                 onError={(e) => {
-                  e.target.onerror = null; e.target.src="https://media.giphy.com/media/GWTzcRZ5kLSGk/giphy.gif"}}
-                //Placeholder Alternative 2
-                // https://via.placeholder.com/500x200.png/7befb2/?text=Look+For+A+Cool+City!
+                  e.target.onerror = null;
+                  e.target.src =
+                    "https://media.giphy.com/media/hTZqITHNkgmX0fwt1C/giphy.gif";
+                }}
                 style={{
-                  width: '100%',
-                  height: '30%',
-                  marginTop: '1em',
+                  width: "100%",
+                  height: "auto",
+                  marginTop: "1em",
                 }}
                 alt="City Banner"
               />
               <br />
 
-              <div className="summary">{ Parser(summary) }</div>
+              <div className="summary">{Parser(summary)}</div>
 
-              { teleport_score  ?
-                <div className="teleport_score"> <p className="title_format">Teleport Score: </p>{teleport_score}</div>
-                : null
-              }
+              {teleport_score ? (
+                <div className="teleport_score">
+                  {" "}
+                  <p className="title_format">Teleport Score (overall): </p>
+                  {teleport_score.toFixed(2)}
+                </div>
+              ) : null}
 
-              { latitude ?
-                <div className="latitude"> <p className="title_format">Latitude: </p>{latitude}</div>
-                : null
-              }
+              {latitude ? (
+                <div className="latitude">
+                  {" "}
+                  <p className="title_format">Latitude: </p>
+                  {latitude}
+                </div>
+              ) : null}
 
-              { longitude ?
-                <div className="longitude"> <p className="title_format">Longitude: </p>{longitude}</div>
-                : null
-              }
+              {longitude ? (
+                <div className="longitude">
+                  {" "}
+                  <p className="title_format">Longitude: </p>
+                  {longitude}
+                </div>
+              ) : null}
 
-              { population ?
-                <div className="population"> <p className="title_format">Population: </p>{population}</div>
-                : null
-              }
+              {population ? (
+                <div className="population">
+                  {" "}
+                  <p className="title_format">Population: </p>
+                  {population}
+                </div>
+              ) : null}
 
-              {timezone ?
-                <div className="timezone"> <p className="title_format">Timezone: </p>{timezone}</div>
-                : null
-              }
+              {timezone ? (
+                <div className="timezone">
+                  {" "}
+                  <p className="title_format">Timezone: </p>
+                  {timezone}
+                </div>
+              ) : null}
 
-              {urban_area ?
-                <div className="urban_area"> <p className="title_format">Urban Area: </p>{urban_area}</div>
-                : null
-              }
+              {urban_area ? (
+                <div className="urban_area">
+                  {" "}
+                  <p className="title_format">Urban Area: </p>
+                  {urban_area}
+                </div>
+              ) : null}
 
               <Scores scores={scores} />
               <Footer />
@@ -183,6 +202,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;
