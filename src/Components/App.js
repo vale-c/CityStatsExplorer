@@ -143,78 +143,58 @@ class App extends Component {
               />
               <br />
 
-              {summary && (
-                <>
+              {summary && (         
                   <div className="summary">{Parser(summary)}</div>
-                  <p
-                    style={{
-                      color: "#364652",
-                      textAlign: "center",
-                      fontWeight: 600,
-                      fontSize: "18px",
-                    }}
-                  >
-                    Quick Facts
-                  </p>
-                </>
               )}
 
-              <div
-                style={{
-                  backgroundColor: summary ? "#f1f1f1" : "transparent",
-                  borderRadius: "10px",
-                  paddingTop: "1em",
-                  marginBottom: "2em",
-                }}
-              >
-                {teleport_score ? (
-                  <div className="teleport_score">
-                    {" "}
-                    <p className="title_format">Teleport Score (overall): </p>
-                    {teleport_score.toFixed(2)}
-                  </div>
-                ) : null}
+              {teleport_score ? (
+                <div className="teleport_score">
+                  {" "}
+                  <p className="title_format">Overall score: </p>
+                  {teleport_score.toFixed(2)}
+                </div>
+              ) : null}
 
-                {latitude ? (
-                  <div className="latitude">
-                    {" "}
-                    <p className="title_format">Latitude: </p>
-                    {latitude}
-                  </div>
-                ) : null}
+              {latitude ? (
+                <div className="latitude">
+                  {" "}
+                  <p className="title_format">Latitude: </p>
+                  {latitude}
+                </div>
+              ) : null}
 
-                {longitude ? (
-                  <div className="longitude">
-                    {" "}
-                    <p className="title_format">Longitude: </p>
-                    {longitude}
-                  </div>
-                ) : null}
+              {longitude ? (
+                <div className="longitude">
+                  {" "}
+                  <p className="title_format">Longitude: </p>
+                  {longitude}
+                </div>
+              ) : null}
 
-                {population ? (
-                  <div className="population">
-                    {" "}
-                    <p className="title_format">Population: </p>
-                    {population.toLocaleString()}
-                  </div>
-                ) : null}
+              {population ? (
+                <div className="population">
+                  {" "}
+                  <p className="title_format">Population: </p>
+                  {population.toLocaleString()}
+                </div>
+              ) : null}
 
-                {timezone ? (
-                  <div className="timezone">
-                    {" "}
-                    <p className="title_format">Timezone: </p>
-                    {timezone}
-                  </div>
-                ) : null}
+              {timezone ? (
+                <div className="timezone">
+                  {" "}
+                  <p className="title_format">Timezone: </p>
+                  {timezone}
+                </div>
+              ) : null}
 
-                {urban_area ? (
-                  <div className="urban_area">
-                    {" "}
-                    <p className="title_format">Urban Area: </p>
-                    {urban_area}
-                  </div>
-                ) : null}
-              </div>
+              {urban_area ? (
+                <div className="urban_area">
+                  {" "}
+                  <p className="title_format">Urban Area: </p>
+                  {urban_area}
+                </div>
+              ) : null}
+              <br />
               <Scores scores={scores} />
               <Footer />
             </Col>
